@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Article
 from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
 
@@ -9,9 +11,10 @@ def index(request):
     context = {"articles": articles}
     return render(request, "article/index.html", context=context)
 
+
 @login_required
 def search_article(request):
-    "Search for article using title "
+    "Search for article using title"
     query = request.GET.get("query")
 
     if query:
@@ -30,7 +33,9 @@ def create_article(request):
         content = request.POST.get("content")
         article = Article(title=title, content=content)
         article.save()
-        return render(request, "article/create_article.html", context={"article": article})
+        return render(
+            request, "article/create_article.html", context={"article": article}
+        )
     else:
         return render(request, "article/create_article.html")
 
@@ -41,7 +46,9 @@ def delete_article(request):
         article_id = request.POST.get("article_id")
         article = Article.objects.get(id=article_id)
         article.delete()
-        return render(request, "article/delete_article.html", context={"article": article})
+        return render(
+            request, "article/delete_article.html", context={"article": article}
+        )
     else:
         return render(request, "article/delete_article.html")
 
@@ -54,7 +61,9 @@ def edit_article(request):
         article.title = request.POST.get("title")
         article.content = request.POST.get("content")
         article.save()
-        return render(request, "article/edit_article.html", context={"article": article})
+        return render(
+            request, "article/edit_article.html", context={"article": article}
+        )
     else:
         return render(request, "article/edit_article.html")
 
