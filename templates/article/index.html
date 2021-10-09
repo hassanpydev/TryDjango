@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Index Page</h1>
+    {% for article in articles %}
+
+    <h1>{{article.title}}</h1>
+
+    <h2>{{ article.content }}</h2>
+    <h3>{{article.category}}</h3>
+    {% endfor %}
+    {% endblock %}
